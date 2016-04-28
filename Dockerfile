@@ -6,7 +6,7 @@ ARG USER_ID=1000
 
 # Install dotdeb repo, PHP and selected extensions
 RUN apt-get update \
-    && apt-get install -y curl \
+    && apt-get install -y curl libxrender1 \
     && apt-get -y --no-install-recommends install php5-cli php5-gd php5-fpm \
         php5-mysqlnd php5-memcache php5-redis php5-apcu php5-curl php5-json \
         php5-mcrypt php5-readline \
