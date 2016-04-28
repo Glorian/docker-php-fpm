@@ -6,7 +6,7 @@ ARG USER_ID=1000
 
 # Install dotdeb repo, PHP and selected extensions
 RUN apt-get update \
-    && apt-get install -y curl \
+    && apt-get install -y curl libxrender1 \
     && echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list \
     && curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add - \
     && apt-get update \
