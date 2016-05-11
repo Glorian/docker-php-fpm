@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get install -y curl libxrender1 libxext6 \
     && apt-get -y --no-install-recommends install php5-cli php5-gd php5-fpm \
         php5-mysqlnd php5-memcache php5-redis php5-apcu php5-curl php5-json \
-        php5-mcrypt php5-readline \
+        php5-mcrypt php5-readline php5-intl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
