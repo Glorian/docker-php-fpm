@@ -12,7 +12,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get -y --no-install-recommends install php7.0-cli php7.0-fpm php7.0-gd \
         php7.0-apcu php7.0-apcu-bc php7.0-redis php7.0-mysql php7.0-curl php7.0-json \
-        php7.0-mcrypt php7.0-opcache php7.0-readline php7.0-memcached \
+        php7.0-mcrypt php7.0-opcache php7.0-readline php7.0-memcached php7.0-intl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
