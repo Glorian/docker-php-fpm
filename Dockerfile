@@ -9,10 +9,8 @@ RUN apt-get install -y nodejs build-essential git\
     # Install global npm packages
     && npm i -g npm@latest gulp bower \
     # Install Composer
-    && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php -r "if (hash_file('SHA384', 'composer-setup.php') === '070854512ef404f16bac87071a6db9fd9721da1684cd4589b1196c3faf71b9a2682e2311b36a5079825e155ac7ce150d') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-    && php -r "unlink('composer-setup.php');" \
+    && curl -o /usr/local/bin/composer https://getcomposer.org/composer.phar
+    && chmod +x /usr/local/bin/composer
     # Sanitizing
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
