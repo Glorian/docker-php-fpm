@@ -5,7 +5,7 @@ MAINTAINER Igor Biletskiy <rjab4ik@gmail.com>
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 
 # Install nodeJS
-RUN apt-get install -y nodejs build-essential\
+RUN apt-get install -y nodejs build-essential git\
     # Install global npm packages
     && npm i -g npm@latest gulp bower \
     # Install Composer
