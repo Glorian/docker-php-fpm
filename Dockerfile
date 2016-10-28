@@ -4,12 +4,14 @@ MAINTAINER Igor Biletskiy <rjab4ik@gmail.com>
 # Default user id for www-data (as default docker-machine UID)
 ARG USER_ID=1000
 
+# Fix terminal (clean ...)
 ENV TERM=linux
 
 # Install dotdeb repo, PHP and selected extensions
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends curl ca-certificates \
-	# Dependencies for pdf-genertor
+    && apt-get install -y --no-install-recommends curl ca-certificates zip unzip \
+    
+    # Dependencies for pdf-genertor
     libxrender1 libxext6 \
 
     # DotDeb source
