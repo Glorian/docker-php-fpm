@@ -1,1 +1,2 @@
-Base image
+PHP.56-cli
+==========
