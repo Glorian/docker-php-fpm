@@ -1,14 +1,16 @@
-FROM debian:jessie
+FROM glorian/php-fpm:base
 
-# Fix terminal (clean ...)
-ENV TERM=linux
-
+# Install dotdeb repo, PHP, composer and selected extensions
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl ca-certificates zip unzip \
+    && apt-get -y --no-install-recommends install php5-cli php5-gd php5-mysqlnd \
+        php5-memcache php5-redis php5-apcu php5-curl  \
+        php5-json php5-mcrypt php5-readline php5-intl \
 
-    # Dependencies for pdf-genertor
-    libxrender1 libxext6 \
+    # Setup composer
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 
-    # Cleaning
+    # Clean
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+CMD ["php", "-a"]
