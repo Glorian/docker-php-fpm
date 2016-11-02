@@ -1,26 +1,13 @@
-FROM debian:jessie
-MAINTAINER Igor Biletskiy <rjab4ik@gmail.com>
+FROM glorian/php-fpm:php56-cli
 
 # Default user id for www-data (as default docker-machine UID)
 ARG USER_ID=1000
 
-# Fix terminal (clean ...)
-ENV TERM=linux
-
 # Install dotdeb repo, PHP and selected extensions
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl ca-certificates zip unzip \
-
-    # Dependencies for pdf-genertor
-    libxrender1 libxext6 \
 
     # Php stuff
-    php5-cli php5-gd php5-fpm \
-    php5-mysqlnd php5-memcache php5-redis php5-apcu php5-curl php5-json \
-    php5-mcrypt php5-readline php5-intl \
-
-    # Setup composer
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && apt-get -y --no-install-recommends install php5-fpm \
 
     # Cleaning
     && apt-get clean \
