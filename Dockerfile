@@ -4,7 +4,7 @@ FROM debian:jessie
 ENV TERM=linux
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl ca-certificates zip unzip \
+    && apt-get install -y --no-install-recommends curl ca-certificates zip unzip git \
 
     # Dependencies for pdf-genertor
     libxrender1 libxext6 \
