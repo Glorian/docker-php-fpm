@@ -1,6 +1,6 @@
 FROM glorian/php-fpm:php56
 
-ENV PHALCON_VERSION_TAG=phalcon-v1.3.4
+ENV PHALCON_VERSION=3.0.1
 ENV IGBINARY_VERSION=2.0.0
 
 RUN apt-get update \
@@ -8,10 +8,10 @@ RUN apt-get update \
 
 # Building Phalcon (1.*)
 RUN cd /tmp \
-    && curl -LO https://github.com/phalcon/cphalcon/archive/${PHALCON_VERSION_TAG}.tar.gz \
-    && tar xzf ${PHALCON_VERSION_TAG}.tar.gz && cd cphalcon-${PHALCON_VERSION_TAG}/build \
+    && curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz \
+    && tar xzf v${PHALCON_VERSION}.tar.gz && cd cphalcon-${PHALCON_VERSION}/build \
     && ./install \
-    && rm -rf ${PHALCON_VERSION_TAG}.tar.gz cphalcon-${PHALCON_VERSION_TAG}
+    && rm -rf v${PHALCON_VERSION}.tar.gz cphalcon-${PHALCON_VERSION}
 
 # Building Igbinary PHP serializer
 RUN cd /tmp \
