@@ -10,7 +10,7 @@ ENV TERM=linux
 RUN apt-get update \
 
     # Installing php-fpm
-    && apt-get -y --no-install-recommends install php7.0-fpm
+    && apt-get -y --no-install-recommends install php7.0-fpm \
 
     # Cleaning
     && apt-get clean \
