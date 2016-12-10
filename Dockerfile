@@ -1,10 +1,8 @@
 FROM glorian/php-fpm:base
 
 # Install dotdeb repo, PHP and selected extensions
-RUN apt-get update \
- 
-    # DotDeb source
-    && echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list \
+# DotDeb source
+RUN echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list \
     && echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/dotdeb.list \
     && curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add - \
 
