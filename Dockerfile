@@ -1,33 +1,25 @@
-FROM glorian/php-fpm:php7-cli
+FROM glorian/php-fpm:php7
 
-# Default user id for www-data (as default docker-machine UID)
-ARG USER_ID=1000
+ENV PHALCON_VERSION=3.0.3
 
-# Fix terminal (clean ...)
-ENV TERM=linux
-
-# Install dotdeb repo, PHP and selected extensions
 RUN apt-get update \
+    && apt-get install -y --no-install-recommends php7.0-dev libpcre3-dev gcc make
 
-    # Installing php-fpm
-    && apt-get -y --no-install-recommends install php7.0-fpm \
+# Building Phalcon
+RUN cd /tmp \
+    && curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz \
+    && tar xzf v${PHALCON_VERSION}.tar.gz && cd cphalcon-${PHALCON_VERSION}/build \
+    && ./install \
+    && rm -rf v${PHALCON_VERSION}.tar.gz cphalcon-${PHALCON_VERSION}
 
-    # Cleaning
-    && apt-get clean \
+# Configs
+RUN cd /etc/php/7.0/ \
+    && echo "extension=phalcon.so" > mods-available/phalcon.ini
+
+# Enable phalcon extension
+RUN /usr/sbin/phpenmod phalcon
+
+# Cleaning
+RUN apt-get -y purge php7.0-dev libpcre3-dev gcc make \
+    && apt-get clean && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-
-# Configure FPM to run properly on docker
-RUN sed -i "/listen = .*/c\listen = [::]:9000" /etc/php/7.0/fpm/pool.d/www.conf \
-    && sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php/7.0/fpm/pool.d/www.conf \
-    && sed -i "/;clear_env = .*/c\clear_env = no" /etc/php/7.0/fpm/pool.d/www.conf \
-    && sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php/7.0/fpm/pool.d/www.conf \
-    && sed -i "/pid = .*/c\;pid = /run/php/php7.0-fpm.pid" /etc/php/7.0/fpm/php-fpm.conf \
-    && sed -i "/;daemonize = .*/c\daemonize = no" /etc/php/7.0/fpm/php-fpm.conf \
-    && sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php/7.0/fpm/php-fpm.conf
-    
-RUN bin/bash -c "if [[ ! -z \"$USER_ID\" && \"$USER_ID\" -ne \"0\" ]]; then usermod -u ${USER_ID} www-data; fi"
-
-# The following runs FPM and removes all its extraneous log output on top of what your app outputs to stdout
-CMD /usr/sbin/php-fpm7.0 -F -O 2>&1 | sed -u 's,.*: \"\(.*\)$,\1,'| sed -u 's,"$,,' 1>&1
-
-EXPOSE 9000
