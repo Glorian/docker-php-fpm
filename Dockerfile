@@ -1,32 +1,22 @@
-FROM debian:jessie
+FROM glorian/php-fpm:base
 
-# Fix terminal (clean ...)
-ENV TERM=linux
+# Install sury repo, PHP and selected extensions
+# Sury source
+RUN echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/sury.list \
+    && curl -sS https://packages.sury.org/php/apt.gpg | apt-key add - \
+    && apt-get update
 
-# Default Timezone
-ENV TIMEZONE=UTC
+# Installing php packages
+RUN apt-get -y --no-install-recommends install php-apcu php-apcu-bc \
+    php7.1-cli php7.1-gd php7.1-mbstring php7.1-redis \
+    php7.1-apcu php7.1-apcu-bc php7.1-mysql php7.1-curl php7.1-json \
+    php7.1-mcrypt php7.1-opcache php7.1-readline php7.1-memcached php7.1-intl php7.1-xml
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    dialog cron curl apt-transport-https ca-certificates zip unzip git \
+# Setup composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-    # Dependencies for pdf-genertor
-    libxrender1 libxext6 \
+# Cleaning
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
 
-    # Cleaning
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-
-# Create named pipe for cron logs
-RUN mkfifo --mode 0666 /var/log/cron.log
-
-# make pam_loginuid.so optional for cron
-# see https://github.com/docker/docker/issues/5663#issuecomment-42550548
-RUN sed --regexp-extended --in-place \
-    's/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/' \
-    /etc/pam.d/cron
-
-COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["php", "-a"]
