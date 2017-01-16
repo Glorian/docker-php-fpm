@@ -18,8 +18,8 @@ fi
 chown -R root:root /etc/cron.d
 chmod -R go-w /etc/cron.d
 
-# Start cron
-service cron start
+# Start cron (silently)
+service cron start > /dev/null 2>&1
 
 # Trap SIGINT and SIGTERM signals and gracefully exit
 trap "service cron stop; kill \$!; exit" SIGINT SIGTERM
