@@ -5,7 +5,7 @@ set -e
 if [ "${CRON_PATH}" ]; then
     echo "CRON_PATH provided: /etc/cron.d -> ${CRON_PATH}"
 
- 	cp -a $CRON_PATH/. /etc/cron.d
+ 	cp $CRON_PATH/* /etc/cron.d/
 fi
 
 # Set default timezone
