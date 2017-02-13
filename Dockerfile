@@ -1,4 +1,4 @@
-FROM glorian/php-fpm:php7-cli
+FROM glorian/php-fpm:php7.1-cli
 MAINTAINER Igor Biletskiy <rjab4ik@gmail.com>
 
 # Install dotdeb repo, PHP and selected extensions
