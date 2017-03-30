@@ -3,7 +3,7 @@ FROM glorian/php-fpm:base
 # Install dotdeb repo, PHP, composer and selected extensions
 RUN apt-get update \
     && apt-get -y --no-install-recommends install php5-cli php5-gd php5-mysqlnd \
-        php5-memcache php5-redis php5-apcu php5-curl  \
+        php5-memcache php5-redis php5-apcu php5-curl php5-zip \
         php5-json php5-mcrypt php5-readline php5-intl \
 
     # Setup composer
