@@ -7,7 +7,7 @@ ARG USER_ID=1000
 RUN apt-get update \
 
     # Php stuff
-    && apt-get -y --no-install-recommends install php5-fpm php-xdebug \
+    && apt-get -y --no-install-recommends install php5-fpm php5-xdebug \
 
     # Cleaning
     && apt-get clean \
