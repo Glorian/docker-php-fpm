@@ -6,8 +6,8 @@ ARG USER_ID=1000
 # Install dotdeb repo, PHP and selected extensions
 RUN apt-get update; \
 
-    # Installing php-fpm
-    apt-get -y --no-install-recommends install php7.1-fpm
+    # Installing addition packages
+    apt-get -y --no-install-recommends install php7.1-fpm php-xdebug
 
 # Cleaning
 RUN apt-get clean; \
