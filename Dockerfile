@@ -15,9 +15,6 @@ RUN echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/d
 
     # Setup composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    
-     # Composer parallel install plugin.
-    && composer global require hirak/prestissimo \
 
     # Cleaning
     && apt-get clean \
