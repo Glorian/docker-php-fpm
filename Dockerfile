@@ -20,6 +20,6 @@ RUN composer global require hirak/prestissimo
 
 # Cleaning
 RUN apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer/cache/*
 
 CMD ["php", "-a"]
