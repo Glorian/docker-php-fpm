@@ -8,9 +8,12 @@ RUN apt-get update \
 
     # Setup composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    
+    # Composer parallel install plugin.
+    && composer global require hirak/prestissimo \
 
     # Clean
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* /root/.composer/cache/*
 
 CMD ["php", "-a"]
