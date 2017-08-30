@@ -6,10 +6,11 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-# Install nodeJS
-RUN apt-get update \
+# Update sources
+RUN apt-get update
 
-    && apt-get install -y --no-install-recommends nodejs yarn build-essential \
+# Install soft
+RUN apt-get install -y --no-install-recommends nodejs yarn build-essential git-ftp \
     
     # Install global npm packages
     && npm i -g npm gulp bower \
