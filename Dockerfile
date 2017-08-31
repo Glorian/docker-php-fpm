@@ -3,13 +3,15 @@ MAINTAINER Igor Biletskiy <rjab4ik@gmail.com>
 
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends build-essential git-ftp openssh-client \
-       dialog apt-transport-https zip unzip git gnupg libpng-dev python python3
+       dialog apt-transport-https zip unzip git gnupg libpng-dev python python3 \
+       libmagickwand-dev libmcrypt-dev libcurl4-gnutls-dev
 
-RUN pecl install imagick && docker-php-ext-enable imagick
+RUN pecl install imagick \
+    && docker-php-ext-enable imagick
 
 # PHP extensions
-RUN docker-php-ext-install mbstring mcrypt imagick gd apcu apcu-bc curl cli json \
-    intl gd xml zip bz2 opcache mysql sqlite3 readline memcached 
+RUN docker-php-ext-install mbstring mcrypt gd curl json \
+    intl gd xml zip bz2 opcache pdo pdo_mysql sqlite3 readline 
 
 # Setup composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
