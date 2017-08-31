@@ -4,7 +4,7 @@ MAINTAINER Igor Biletskiy <rjab4ik@gmail.com>
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends build-essential git-ftp openssh-client \
        dialog apt-transport-https zip unzip git gnupg libpng-dev python python3 \
-       libmagickwand-dev libmcrypt-dev libcurl4-gnutls-dev
+       libmagickwand-dev libmcrypt-dev libcurl4-gnutls-dev libicu-dev zlib1g-dev
 
 RUN pecl install imagick \
     && docker-php-ext-enable imagick
