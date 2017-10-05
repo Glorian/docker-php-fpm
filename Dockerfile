@@ -10,6 +10,9 @@ RUN apt-get update -yqq \
 # Imagic extension
 RUN pecl install imagick && docker-php-ext-enable imagick
 
+# Configure extensions
+RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
+
 # Other php extensions
 RUN docker-php-ext-install mbstring mcrypt gd curl json intl xml zip bz2 opcache pdo pdo_mysql \
     pdo_sqlite mysqli iconv fileinfo readline session dom ldap
