@@ -5,14 +5,14 @@ RUN apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends build-essential openssh-client \
     dialog apt-transport-https zip unzip git gnupg libpng-dev python python3 \
     libmagickwand-dev libmcrypt-dev libcurl4-gnutls-dev libicu-dev zlib1g-dev \
-    libsqlite3-dev libedit-dev rsync lftp
+    libsqlite3-dev libldap2-dev libedit-dev rsync lftp
 
 # Imagic extension
 RUN pecl install imagick && docker-php-ext-enable imagick
 
 # Other php extensions
 RUN docker-php-ext-install mbstring mcrypt gd curl json intl xml zip bz2 opcache pdo pdo_mysql \
-    pdo_sqlite mysqli iconv fileinfo readline session dom
+    pdo_sqlite mysqli iconv fileinfo readline session dom ldap
 
 # Setup composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
