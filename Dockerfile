@@ -1,9 +1,9 @@
-FROM glorian/php-fpm:php7
+FROM glorian/php-fpm:php7.1
 
-ENV PHALCON_VERSION=3.0.3
+ENV PHALCON_VERSION=3.2.2
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends php7.0-dev libpcre3-dev gcc make
+    && apt-get install -y --no-install-recommends php7.1-dev libpcre3-dev gcc make
 
 # Building Phalcon
 RUN cd /tmp \
@@ -13,13 +13,13 @@ RUN cd /tmp \
     && rm -rf v${PHALCON_VERSION}.tar.gz cphalcon-${PHALCON_VERSION}
 
 # Configs
-RUN cd /etc/php/7.0/ \
+RUN cd /etc/php/7.1/ \
     && echo "extension=phalcon.so" > mods-available/phalcon.ini
 
 # Enable phalcon extension
 RUN /usr/sbin/phpenmod phalcon
 
 # Cleaning
-RUN apt-get -y purge php7.0-dev libpcre3-dev gcc make \
+RUN apt-get -y purge php7.1-dev libpcre3-dev gcc make \
     && apt-get clean && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
