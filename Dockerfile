@@ -5,7 +5,7 @@ RUN apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends build-essential openssh-client \
     dialog apt-transport-https zip unzip git gnupg libpng-dev python python3 \
     libmagickwand-dev libmcrypt-dev libcurl4-gnutls-dev libicu-dev zlib1g-dev \
-    libsqlite3-dev libldap2-dev libedit-dev rsync lftp
+    libsqlite3-dev libldap2-dev libedit-dev rsync lftp sshpass
 
 # Imagic extension
 RUN pecl install imagick && docker-php-ext-enable imagick
