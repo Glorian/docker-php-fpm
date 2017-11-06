@@ -2,7 +2,7 @@ FROM glorian/php-fpm:base
 
 # Install sury repo, PHP and selected extensions
 # Sury source
-RUN echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/sury.list \
+RUN echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/sury.list \
     && curl -sS https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get update
 
