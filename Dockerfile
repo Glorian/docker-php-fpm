@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 # Fix terminal (clean ...)
 ENV TERM=linux
