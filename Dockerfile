@@ -1,11 +1,11 @@
-FROM debian:jessie
+FROM debian:stretch
 
 ENV TERM=linux
 ENV PHALCON_VERSION=3.2.2
 
 RUN apt-get -qq update \
     && apt-get install -yqq --no-install-recommends \
-    dialog curl apt-transport-https ca-certificates zip unzip git
+    dialog curl apt-transport-https ca-certificates zip unzip git gnupg
 
 # Install sury repo, PHP and selected extensions
 # Sury source
