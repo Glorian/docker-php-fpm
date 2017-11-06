@@ -8,7 +8,7 @@ ENV TIMEZONE=UTC
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    dialog cron curl apt-transport-https ca-certificates zip unzip git \
+    dialog cron curl apt-transport-https ca-certificates zip unzip git gnupg \
 
     # Dependencies for pdf-genertor
     libxrender1 libxext6 \
