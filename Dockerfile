@@ -8,7 +8,7 @@ RUN echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.li
 RUN apt-get update \
     && apt-get -y --no-install-recommends install php5.6-cli php5.6-gd php5.6-mysqlnd \
         php5.6-memcache php5.6-redis php5.6-apcu php5.6-curl php-pclzip php5.6-imagick \
-        php5.6-json php5.6-mcrypt php5.6-readline php5.6-intl \
+        php5.6-json php5.6-mcrypt php5.6-readline php5.6-intl php5.6-xml \
     # Setup composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     # Composer parallel install plugin.
