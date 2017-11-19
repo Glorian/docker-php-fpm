@@ -8,7 +8,8 @@ ENV TIMEZONE=UTC
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    dialog cron curl apt-transport-https ca-certificates zip unzip git gnupg \
+    dialog cron curl apt-transport-https ca-certificates \
+    zip unzip git gnupg supervisor \
 
     # Dependencies for pdf-genertor
     libxrender1 libxext6 \
@@ -28,5 +29,7 @@ RUN sed --regexp-extended --in-place \
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
+
+VOLUME ["/etc/supervisor/conf.d", "/var/www"]
 
 ENTRYPOINT ["/entrypoint.sh"]
