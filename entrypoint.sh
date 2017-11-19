@@ -21,8 +21,8 @@ chmod -R go-w /etc/cron.d
 # Start cron (silently)
 service cron start > /dev/null 2>&1
 
-# Start supervisor
-supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf
+# Start supervisor in daemon mode
+supervisord --configuration /etc/supervisor/supervisord.conf
 
 # Trap SIGINT and SIGTERM signals and gracefully exit
 trap "service cron stop; kill \$!; exit" SIGINT SIGTERM
