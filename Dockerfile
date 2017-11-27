@@ -1,7 +1,7 @@
 FROM debian:stretch
 
 ENV TERM=linux
-ENV PHALCON_VERSION=3.2.2
+ENV PHALCON_VERSION=3.2.4
 
 RUN apt-get -qq update \
     && apt-get install -yqq --no-install-recommends \
