@@ -1,4 +1,4 @@
-FROM php:7
+FROM php:7.1
 MAINTAINER Igor Biletskiy <rjab4ik@gmail.com>
 
 RUN apt-get update -yqq \
