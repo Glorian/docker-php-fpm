@@ -14,6 +14,9 @@ RUN apt-get update \
     # Dependencies for pdf-genertor
     libxrender1 libxext6 \
 
+    # Image optimization packages
+    jpegoptim optipng pngquant gifsicle \
+
     # Cleaning
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
