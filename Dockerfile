@@ -8,9 +8,9 @@ RUN echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.li
 
 # Installing php packages
 RUN apt-get -y --no-install-recommends install php-apcu php-apcu-bc php-imagick \
-    php7.1-cli php7.1-gd php7.1-mbstring php7.1-redis php7.1-zip php7.1-ldap \
-    php7.1-apcu php7.1-apcu-bc php7.1-mysql php7.1-sqlite3 php7.1-curl php7.1-json \
-    php7.1-mcrypt php7.1-opcache php7.1-readline php7.1-memcached php7.1-intl php7.1-xml
+    php7.2-cli php7.2-gd php7.2-mbstring php7.2-redis php7.2-zip php7.2-ldap \
+    php7.2-apcu php7.2-apcu-bc php7.2-mysql php7.2-sqlite3 php7.2-curl php7.2-json \
+    php7.2-opcache php7.2-readline php7.2-memcached php7.2-intl php7.2-xml
 
 # Setup composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
