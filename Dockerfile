@@ -6,19 +6,20 @@ ENV TERM=linux
 # Default Timezone
 ENV TIMEZONE=UTC
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    dialog cron curl apt-transport-https ca-certificates \
-    zip unzip git gnupg supervisor \
+RUN apt update \
+    && apt dist-upgrade -y \
+    && apt install -y --no-install-recommends \
+        dialog cron curl apt-transport-https ca-certificates \
+        zip unzip git gnupg supervisor \
 
-    # Dependencies for pdf-genertor
-    libxrender1 libxext6 \
+        # Dependencies for pdf-genertor
+        libxrender1 libxext6 \
 
-    # Image optimization packages
-    jpegoptim optipng pngquant gifsicle \
+        # Image optimization packages
+        jpegoptim optipng pngquant gifsicle \
 
     # Cleaning
-    && apt-get clean \
+    && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 # Create named pipe for cron logs
