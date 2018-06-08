@@ -25,9 +25,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Latest git-ftp
 RUN git clone https://github.com/git-ftp/git-ftp.git ~/git-ftp && cd ~/git-ftp \
     # choose the newest release
-    && tag="$(git tag | grep '^[0-9]*\.[0-9]*\.[0-9]*$' | tail -1)" \
+    # && tag="$(git tag | grep '^[0-9]*\.[0-9]*\.[0-9]*$' | tail -1)" \
     # checkout the latest tag
-    && git checkout "$tag" \
+    # && git checkout "$tag" \
+    && git checkout "1.4.0" \
     && make install
 
 
