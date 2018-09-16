@@ -2,16 +2,27 @@ FROM glorian/php-fpm:php7.2-cli
 
 # Default user id for www-data (as default docker-machine UID)
 ARG USER_ID=1000
+ARG XDEBUG_VERSION=2.6.1
 
 # Install dotdeb repo, PHP and selected extensions
-RUN apt-get update; \
-
+RUN apt-get update \
     # Installing php-fpm
-    apt-get -y --no-install-recommends install php7.2-fpm
+    && apt-get -y --no-install-recommends install php7.2-fpm php7.2-dev \
+    make wget
+
+# Install Xdebug
+RUN cd /tmp && wget https://xdebug.org/files/xdebug-${XDEBUG_VERSION}.tgz \
+    && tar -xvzf xdebug* \
+    && cd xdebug* \
+    && phpize && ./configure && make \
+    && cp modules/xdebug.so $(php-config --extension-dir)
+
+COPY files/xdebug.ini /etc/php/7.2/mods-available/
 
 # Cleaning
-RUN apt-get clean; \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apt-get purge -y php7.2-dev make wget \
+    && apt-get clean && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 # Configure FPM to run properly on docker
 RUN sed -i "/listen = .*/c\listen = [::]:9000" /etc/php/7.2/fpm/pool.d/www.conf \
