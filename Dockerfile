@@ -16,7 +16,7 @@ RUN apt-get -y --no-install-recommends install php-apcu php-apcu-bc php-imagick 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Composer parallel install plugin
-RUN composer global require hirak/prestissimo
+RUN export COMPOSER_ALLOW_SUPERUSER=1 && composer global require hirak/prestissimo
 
 # Cleaning
 RUN apt-get clean \
