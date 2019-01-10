@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:stretch-slim
 
 # Fix terminal (clean ...)
 ENV TERM=linux
