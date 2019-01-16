@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TMP_DIR=/home/sync
+TMP_DIR=/tmp
 SYNC_FILE_PATH="$TMP_DIR/git_all_files_tmp"
 PROJECT_PATH="${2:-$PWD}"
 DESTINATION_PATH="${1}"
