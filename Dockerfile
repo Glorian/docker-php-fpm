@@ -19,6 +19,7 @@ RUN pecl install imagick \
         gd \
         curl \
         json \
+        exif \
         intl \
         xml \
         zip \
