@@ -13,27 +13,16 @@ RUN pecl install imagick \
     && docker-php-ext-enable imagick \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-configure bcmath --enable-bcmath \
-    && docker-php-ext-install mbstring \
-        mcrypt \
+    && docker-php-ext-install \
         bcmath \
         gd \
-        curl \
-        json \
         exif \
         intl \
-        xml \
-        zip \
-        bz2 \
         opcache \
         pdo \
         pdo_mysql \
         pdo_sqlite \
         mysqli \
-        iconv \
-        fileinfo \
-        readline \
-        session \
-        dom \
         ldap \
     # Setup composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
