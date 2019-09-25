@@ -41,7 +41,7 @@ RUN pecl install imagick \
     # && tag="$(git tag | grep '^[0-9]*\.[0-9]*\.[0-9]*$' | tail -1)" \
     # checkout the latest tag
     # && git checkout "$tag" \
-    && git checkout "1.4.0" \
+    && git checkout "1.5.2" \
     && make install \
     # Add nodeJS and yarn repos
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
