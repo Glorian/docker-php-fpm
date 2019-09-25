@@ -12,11 +12,14 @@ RUN apt-get update -yqq \
 RUN pecl install imagick \
     && docker-php-ext-enable imagick \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+    && docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-install mbstring \
         mcrypt \
+        bcmath \
         gd \
         curl \
         json \
+        exif \
         intl \
         xml \
         zip \
